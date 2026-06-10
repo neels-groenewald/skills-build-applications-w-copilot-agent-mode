@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB } from './config/database';
+import { BASE_URL } from './config/api';
 import usersRouter from './routes/users';
 import teamsRouter from './routes/teams';
 import activitiesRouter from './routes/activities';
@@ -12,11 +13,7 @@ dotenv.config();
 
 const app = express();
 const PORT = 8000;
-
-const codespaceName = process.env.CODESPACE_NAME;
-const baseUrl = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev`
-  : 'http://localhost:8000';
+const baseUrl = BASE_URL;
 
 app.use(cors());
 app.use(express.json());
